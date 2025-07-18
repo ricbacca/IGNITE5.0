@@ -1,0 +1,8 @@
+FROM openjdk:18
+
+# Crea una directory per l'app
+WORKDIR /container
+
+COPY ControlPlaneAAS.jar /container/ControlPlaneAAS.jar
+
+ENTRYPOINT ["java", "-jar", "ControlPlaneAAS.jar"]

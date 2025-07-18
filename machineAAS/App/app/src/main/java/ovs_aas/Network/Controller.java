@@ -34,9 +34,7 @@ public class Controller extends AbstractController {
             statusCode = response.getStatusLine().getStatusCode();
             if (response != null)
                 response.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } 
+        } catch (IOException e) {} 
 
         return statusCode == HTTP_OK;
     }

@@ -1,0 +1,8 @@
+FROM openjdk:18
+
+# Crea una directory per l'app
+WORKDIR /container
+
+COPY InfrastructureAAS.jar /container/InfrastructureAAS.jar
+
+ENTRYPOINT ["java", "-jar", "InfrastructureAAS.jar"]
