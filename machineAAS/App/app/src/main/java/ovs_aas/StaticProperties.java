@@ -22,6 +22,10 @@ public class StaticProperties {
     public static final String REGISTRY_POLLING = "api/v1/registry";
     private static final String REGISTRY_IP = "REGISTRY_IP";
 
+    private static final String MQTT_BROKER = "MQTT_BROKER";
+    private static final int MQTT_PORT = 1883;
+    private static final String MQTT_TOPIC = "v1/#";
+
     private static final String AAS_IP = "AAS_IP";
     private static final String AAS_PORT = "0";
     private static final String ID = "ID";
@@ -29,6 +33,18 @@ public class StaticProperties {
 
     public static void setAAS_IP(String newValue) {
         System.setProperty(AAS_IP,  newValue);
+    }
+
+    public static String getMqttBroker() {
+        return System.getProperty(MQTT_BROKER, "null");
+    }
+
+    public static int getMqttPort() {
+        return MQTT_PORT;
+    }
+
+    public static String getMqttTopic() {
+        return MQTT_TOPIC;
     }
 
     public static void setAAS_PORT(String newValue) {
@@ -41,6 +57,10 @@ public class StaticProperties {
 
     public static void setID(String newValue) {
         System.setProperty(ID,  newValue);
+    }
+
+    public static void setMQTT_IP(String newValue) {
+        System.setProperty(MQTT_BROKER,  newValue);
     }
 
     public static void setREGISTRY_IP(String newValue) {

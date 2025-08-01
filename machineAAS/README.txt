@@ -17,7 +17,14 @@ docker run --rm \
 -e ASSET_IP=192.168.1.10:8080 \
 -e AAS_IP=localhost:6001 \
 -e ID=MachineOne \
--e REGISTRY_IP=172.17.0.2:4000 \ -- REGISTRY IP su porta 4000 di backend sempre !!
+-e MQTT_IP=172.17.0.2 \
+-e REGISTRY_IP=172.17.0.3:4000 \
 -p 6001:6001 \
--p 8080:8080 machineaas
+-p 8080:8080 machine_aas
 
+NOTA BENE:
+
+Per trovare IP degli altri container utilizzati, usare il comando "docker inspect <<nome_container>>"
+
+
+Il Nome container è ottenibile con "docker container ls"

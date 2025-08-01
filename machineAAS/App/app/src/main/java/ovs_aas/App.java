@@ -75,6 +75,7 @@ public class App {
         String aas_ip = System.getenv("AAS_IP");
         String asset_ip = System.getenv("ASSET_IP");
         String registry_ip = System.getenv("REGISTRY_IP");
+        String mqtt_ip = System.getenv("MQTT_IP");
 
         if (aas_ip == null || asset_ip == null || id == null || registry_ip == null) {
             System.err.println("Errore: definire le variabili d'ambiente AAS_IP - ASSET_IP - ID - REGISTRY_IP");
@@ -101,6 +102,7 @@ public class App {
         StaticProperties.setASSET_IP(asset_ip);
         StaticProperties.setID(id);
         StaticProperties.setREGISTRY_IP(registry_ip);
+        StaticProperties.setMQTT_IP(mqtt_ip);
 
         System.out.println("Saved AAS PORT: " + StaticProperties.getAAS_PORT());
     }

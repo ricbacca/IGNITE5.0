@@ -22,12 +22,17 @@ import java.util.function.Function;
 
 import org.eclipse.basyx.submodel.metamodel.map.submodelelement.SubmodelElement;
 import org.eclipse.basyx.submodel.metamodel.map.submodelelement.dataelement.property.Property;
+import org.eclipse.paho.client.mqttv3.MqttException;
+
+import ovs_aas.Mqtt.AASMqttClient;
 
 public class MachineryLambda {
     private PingTest pingHost;
+    private AASMqttClient client;
 
-    public MachineryLambda() {
+    public MachineryLambda(AASMqttClient aasMqttClient) {
         this.pingHost = new PingTest();
+        this.client = aasMqttClient;
     }
 
     /**
@@ -63,6 +68,21 @@ public class MachineryLambda {
             return new SubmodelElement[] {
                 new Property("Hai inserito i valori: " + Prova1 + ", " + Prova2)
             };
+        };
+    }
+
+    public Function<Map<String, SubmodelElement>, SubmodelElement[]> mqtt() {
+        return (args) -> {
+            String topic = ((String) args.get("Topic").getValue());
+
+            try {
+                return new SubmodelElement[] {
+                    new Property("Result: " + this.client.readVelocity(topic))
+                };
+            } catch (InterruptedException | MqttException e) {
+                e.printStackTrace();
+            }
+            return null;
         };
     }
 }

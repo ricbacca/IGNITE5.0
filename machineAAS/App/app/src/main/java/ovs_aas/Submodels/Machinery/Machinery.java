@@ -20,7 +20,6 @@ import org.eclipse.basyx.submodel.metamodel.map.Submodel;
 import org.eclipse.basyx.submodel.metamodel.map.qualifier.LangStrings;
 import org.eclipse.basyx.submodel.metamodel.map.submodelelement.dataelement.property.valuetype.ValueType;
 import org.eclipse.basyx.submodel.metamodel.map.submodelelement.operation.Operation;
-
 import ovs_aas.Submodels.AbstractSubmodel;
 
 import java.util.Map;
@@ -35,7 +34,7 @@ public class Machinery extends AbstractSubmodel {
     public Machinery(List<String> hosts) {
         super();
         this.hosts = hosts;
-        this.lambdaProvider = new MachineryLambda();
+        this.lambdaProvider = new MachineryLambda(this.getMqttClient());
     }
 
     @Override
@@ -48,6 +47,7 @@ public class Machinery extends AbstractSubmodel {
         Submodel romagnaTech = new Submodel();
         romagnaTech.setIdShort("RomagnaTech");
         romagnaTech.addSubmodelElement(this.test());
+        romagnaTech.addSubmodelElement(this.getMQTTVelocity());
 
         return List.of(operations, romagnaTech);
     }
@@ -68,6 +68,19 @@ public class Machinery extends AbstractSubmodel {
         pingMachinery.setWrappedInvokable(lambdaProvider.pingMachinery(hosts));
 
         return pingMachinery;
+    }
+
+    private Operation getMQTTVelocity() {
+        Operation mqtt = new Operation("GetMqttValues");
+        mqtt.setDescription(this.getDescription());
+        mqtt.setInputVariables(getUtils().getCustomInputVariables(Map.of(
+            "Topic", ValueType.String
+        )));
+
+        mqtt.setOutputVariables(getUtils().getOperationVariables(1, "Output"));
+        mqtt.setWrappedInvokable(lambdaProvider.mqtt());
+
+        return mqtt;
     }
 
     private Operation test() {

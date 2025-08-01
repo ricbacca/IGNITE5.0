@@ -14,6 +14,8 @@
 
 package ovs_aas.Submodels;
 
+import ovs_aas.StaticProperties;
+import ovs_aas.Mqtt.AASMqttClient;
 import ovs_aas.Network.Controller;
 import ovs_aas.Submodels.Utils.Utils;
 
@@ -23,10 +25,16 @@ import ovs_aas.Submodels.Utils.Utils;
 public abstract class AbstractSubmodel implements ISubmodel {
     private Utils utils;
     private Controller ryuController;
+    private AASMqttClient mqttClient;
 
     public AbstractSubmodel() {
         this.utils = new Utils();
         this.ryuController = new Controller();
+        this.mqttClient = new AASMqttClient(StaticProperties.getMqttBroker(), StaticProperties.getMqttPort());
+    }
+
+    public AASMqttClient getMqttClient() {
+        return this.mqttClient;
     }
 
     public Utils getUtils() {
