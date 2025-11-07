@@ -53,5 +53,5 @@ RUN chmod +x /init_script.sh
 
 COPY sshd_config /ssh/sshd_config
 
-CMD ["/start.sh"]
+CMD ["/init_script.sh"]
 

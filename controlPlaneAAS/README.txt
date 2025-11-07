@@ -11,6 +11,7 @@ STARTUP:
    -p 6002:6002 controlplane_aas
 
 NOTA:
+- AAS_IP è l'IP a cui la WebUI va a reperire le informazion da mostrare a video
 - Avviare ControlPlaneAAS solo DOPO aver avviato il Registry e i controller. Senza non partirà!
 - aprire le porte, che l'AAS utilizza (le stesse di AAS_IP)
 - REGISTRY IP su porta 4000 di backend sempre !!
