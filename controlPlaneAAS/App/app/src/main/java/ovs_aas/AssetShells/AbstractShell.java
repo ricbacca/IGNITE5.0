@@ -83,7 +83,10 @@ public abstract class AbstractShell implements IShell {
 
     @Override
     public void addSubmodels() {
-        this.submodels.forEach(el -> this.shell.addSubmodel(el));
+        this.submodels.forEach(el -> {
+            System.out.println("Added: " + el);
+            this.shell.addSubmodel(el);
+        });
     }
 
     @Override
