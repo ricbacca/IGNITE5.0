@@ -1,0 +1,8 @@
+FROM openjdk:18
+
+# Crea una directory per l'app
+WORKDIR /container
+
+COPY MachineAAS.jar /container/MachineAAS.jar
+
+ENTRYPOINT ["java", "-jar", "MachineAAS.jar"]

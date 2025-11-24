@@ -1,0 +1,23 @@
+FROM eclipse-temurin:18
+
+ENV AAS_IP=192.168.10.2:6002
+ENV CNT1_IP=192.168.10.2
+ENV CNT2_IP=192.168.10.2
+ENV REGISTRY_IP=192.168.10.101:8082
+
+EXPOSE 6002
+EXPOSE 8082
+EXPOSE 4000
+EXPOSE 6633
+EXPOSE 6653
+EXPOSE 8080
+EXPOSE 9090
+EXPOSE 1000
+EXPOSE 2000
+
+# Crea una directory per l'app
+WORKDIR /container
+
+COPY ControlPlaneAAS.jar /container/ControlPlaneAAS.jar
+
+ENTRYPOINT ["java", "-jar", "ControlPlaneAAS.jar"]

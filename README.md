@@ -4,35 +4,32 @@ Repository for IGNITE5.0 Project
 All'interno di ciascuna cartella disponibile il relativo readme per l'avvio del componente.
 Per arricchire MachineAAS seguire le indicazioni commentate all'interno del progetto "App"
 
+SEGUIRE STRETTAMENTE L'ORDINE DI AVVIO.
 
-MODIFICATO
+CONFIGURAZIONE HARDWARE DI SEGUITO:
 
-L'ordine di avvio deve essere il seguente:
-1. Infrastruttura BaSyx: Registry e WEB-UI
-2. Avvio dei Controller (vedi: controlPlaneAAS/configurazione_controller)
-3. Avvio degli Switch OpenFlow (vedi: infrastructureAAS/configurazione_switch)
-4. Avvio di eventuali dispositivi esterni necessari per MachineAAS o simili
-   1. Se possibile inserire sempre delle routine per verificare la connettività all'avvio, senza far crashare tutto
-5. Avvio di tutti gli AAS
+ROUTER -> 192.168.10.1
+   - usr: admin
+   - pwd: adminRomagnaTech2025
+   - pwd_wifi: romagnatech2025
 
-
-
-REGISTRY E WEB UI -> 192.168.10.101
+PC -> REGISTRY E WEB UI -> 192.168.10.101
    - WEB UI: 3000 FRONT E BACKEND
    - REGISTRY: 8082 - 4000 BACKEND
 
-IT BOUNDARY -> 192.168.10.4
-   - CNT1 -> Controller 1 per Switch 1
-     - Porta 8080
-     - Api: 6633
+RASP1 -> IT BOUNDARY -> 192.168.10.4
+   - AVVIO OVS1
+   - Controller CNT1 ip: 192.168.10.2:6633
+   - Check di quali ETH abbiamo a disposizione: EHT0, ETH1 messe di default nello script
 
-OT BONDARY -> 192.168.10.3
-   - CNT2 -> Controller 2 per Switch 2
-     - Porta 9090
-     - Api: 6653
+RASP2 -> OT BONDARY -> 192.168.10.3
+   - AVVIO OVS2
+   - Controller CNT2 ip: 192.168.10.2:6653
+   - Check di quali ETH abbiamo a disposizione: EHT0, ETH1 messe di default nello script
 
-AAS RETE -> 192.168.10.2
-   - AAS_IP: 192.168.10.2
-   - CNT1: 192.168.10.4
-   - CNT2: 192.168.10.3
-   - REGISTRI_IP: 192.168.10.101
+RASP3 -> AAS RETE -> 192.168.10.2
+   - CONTROL PLANE AAS: 192.168.10.2:6002
+   - INFRASTRUCTURE AAS: 192.168.10.2:6003
+   - CNT1: 192.168.10.2:6633 (1000 per ssh)
+   - CNT2: 192.168.10.2:6653 (2000 per ssh)
+   - REGISTRI_IP: 192.168.10.101:8082
