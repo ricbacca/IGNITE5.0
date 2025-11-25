@@ -1,5 +1,6 @@
 STARTUP:
 
+0. sudo chmod 777 init_script.sh
 1. Installare OVS su Raspberry: https://snapcraft.io/install/openvswitch/raspbian
 2. Eseguire prima su SW1 (ITBOUNDARY) e poi su SW2 (OTBOUNDARY) lo script preparato, che esegue:
    - Avvio di SSH e configurazione con usr e pwd standard
